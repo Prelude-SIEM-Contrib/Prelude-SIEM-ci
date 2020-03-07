@@ -12,8 +12,8 @@ before_install:
   - sudo cp /usr/include/ev++.h /usr/include/ev.h /usr/include/libev/
 language: c
 script: 
-- cd libprelude && patch -p1 < ../patchs/libprelude-5.1.0-*.patch && sh autogen.sh && ./configure --enable-gtk-doc && make && make distcheck && sudo make install && sudo ldconfig
-- cd ../libpreludedb && patch -p1 < ../patchs/libpreludedb-5.1.0-*.patch && sh autogen.sh && ./configure --enable-gtk-doc && make && make distcheck && sudo make install && sudo ldconfig
+- cd libprelude && for i in ../patchs/libprelude-5.1.0-*.patch; do patch -p1 < $i; done && sh autogen.sh && ./configure --enable-gtk-doc && make && make distcheck && sudo make install && sudo ldconfig
+- cd ../libpreludedb && for i in ../patchs/libpreludedb-5.1.0-*.patch; do patch -p1 < $i; done && sh autogen.sh && ./configure --enable-gtk-doc && make && make distcheck && sudo make install && sudo ldconfig
 - cd ../prelude-manager && sh autogen.sh && ./configure --enable-gtk-doc && make && make distcheck && sudo make install
 - cd ../prelude-lml && sh autogen.sh && ./configure --enable-gtk-doc && make && make distcheck && sudo make install
 - cd ../prelude-correlator && python setup.py sdist && sudo python setup.py install
