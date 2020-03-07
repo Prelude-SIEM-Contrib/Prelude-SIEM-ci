@@ -5,14 +5,14 @@ git:
 before_install:
   - sudo apt-get update -qq
   - git submodule update --init --remote --recursive
-  - sudo apt-get install -y autoconf bison build-essential flex gettext gtk-doc-tools libev-dev libgcrypt-dev libglib2.0-dev libgnutls28-dev libicu-dev liblua5.1-dev libmysqlclient-dev libpcre3-dev libpq-dev libsqlite3-dev libtool libwrap0-dev libxml2-dev lua5.1 perl pkg-config python-babel python-cheetah python-dateutil python-dev python-lesscpy python-netaddr python-twisted-names python-tz ruby-dev swig t1-xfree86-nonfree
+  - sudo apt-get install -y autoconf bison build-essential flex gettext gtk-doc-tools libev-dev libgcrypt-dev libglib2.0-dev libgnutls28-dev libicu-dev liblua5.1-dev libmysqlclient-dev libpcre3-dev libpq-dev libsqlite3-dev libtool libwrap0-dev libxml2-dev lua5.1 perl pkg-config python-babel python-cheetah python-dateutil python-dev python-lesscpy python-netaddr python-twisted-names python-tz ruby-dev swig t1-xfree86-nonfree libruby
+  - ls -l /usr/lib/libruby*
   - sudo ln -s /usr/lib/libruby-1.9.1.so.1.9.1 /usr/lib/libruby.so
   - sudo ldconfig
   - sudo mkdir -p /usr/include/libev
   - sudo cp /usr/include/ev++.h /usr/include/ev.h /usr/include/libev/
 language: c
 script: 
-- ls -l /usr/lib/libruby*
 - cd libprelude && sh autogen.sh && ./configure --enable-gtk-doc && make && make distcheck && sudo make install && sudo ldconfig
 - cd ../libpreludedb && sh autogen.sh && ./configure --enable-gtk-doc && make && make distcheck && sudo make install && sudo ldconfig
 - cd ../prelude-manager && sh autogen.sh && ./configure --enable-gtk-doc && make && make distcheck && sudo make install
