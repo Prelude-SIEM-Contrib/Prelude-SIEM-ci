@@ -1,5 +1,5 @@
 sudo: enabled
-dist: trusty
+dist: bionic
 git:
   submodules: false
 before_install:
